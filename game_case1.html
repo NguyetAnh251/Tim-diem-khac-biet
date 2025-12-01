@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case 1 - Easy Mode</title>
+    <link rel="stylesheet" href="giaodien.css">
+</head>
+<body>
+    <div class="game-header">
+        <div class="lives">
+            <span class="heart">💜</span>
+            <span class="heart">💜</span>
+            <span class="heart">💜</span>
+        </div>
+        
+        <div class="header-center">
+            <h1 class="game-title">CASE 1</h1>
+        </div>
+
+        <div class="header-spacer" style="flex: 1;"></div>
+    </div>
+
+    <div class="game-container">
+        <div class="image-area">
+            <div class="image-box" id="box-left">
+                <img src="daday2.png" alt="Ảnh gốc" id="img-original">
+                
+                <div class="diff-zone" id="diff-L-1" 
+                     style="top: 52%; left: 57%; width: 12%; height: 12%;" 
+                     onclick="handleDiffClick(event, 1)"></div>
+                
+                <div class="diff-zone" id="diff-L-2" 
+                     style="top: 68%; left: 40%; width: 10%; height: 10%;" 
+                     onclick="handleDiffClick(event, 2)"></div> 
+            </div>
+
+            <div class="image-box" id="box-right">
+                <img src="daday1.jpg" alt="Ảnh khác biệt" id="img-altered">
+                
+                <div class="diff-zone" id="diff-R-1" 
+                     style="top: 52%; left: 57%; width: 12%; height: 12%;" 
+                     onclick="handleDiffClick(event, 1)"></div>
+
+                <div class="diff-zone" id="diff-R-2" 
+                     style="top: 68%; left: 40%; width: 10%; height: 10%;" 
+                     onclick="handleDiffClick(event, 2)"></div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="timer-box">
+                <div class="timer-group">
+                     <div id="currentTime" class="timer-number">00:00</div>
+                     <div class="timer-label">TIME</div>
+                </div>
+
+                <div class="timer-group">
+                     <div id="bestTime" class="timer-number">00:00</div>
+                     <div class="timer-label">BEST TIME</div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="hint-btn" class="control-btn icon-btn">💡 Hint</button>
+                <button id="audio-btn" class="control-btn icon-btn">🔊 Audio</button>
+                <button id="pause-btn" class="control-btn icon-btn">⏸ Pause</button>
+                <button class="control-btn icon-btn" onclick="window.location.href='khung.html'">⬅ Back</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        <span class="alert-icon">!</span> Try to find all the differences by click on the abnormal area
+    </div>
+
+    <div id="victory-modal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="scribble-heart">💜</div>
+            <h1 class="modal-title">WELL DONE!</h1>
+            <p class="modal-subtitle">CASE 1</p>
+            <div class="modal-score-box">
+                YOUR SCORE: <span class="score-num">+ 100</span>
+                <span class="small-heart">💜</span>
+            </div>
+            <button class="next-case-btn" onclick="window.location.href='game_case1.2.html'">Next case</button>
+        </div>
+    </div>
+
+    <div id="game-over-modal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="scribble-heart" style="color: #8e94f2;">💜</div>
+            <h1 class="modal-title">OOPS!</h1>
+            <p class="modal-subtitle" style="margin-bottom: 40px;">DON'T GIVE UP!</p>
+            <button class="next-case-btn" onclick="window.location.reload()">Try again</button>
+        </div>
+    </div>
+</div>
+
+<div id="hint-modal" class="modal-overlay">
+        <div class="modal-box hint-box">
+            <div class="scribble-heart" style="color: #f1c40f;">💡</div>
+            
+            <h1 class="modal-title">HINT</h1>
+            <p class="modal-subtitle">CASE 1</p>
+            
+            <div class="modal-score-box" style="flex-direction: column; gap: 5px; margin-bottom: 30px;">
+                
+                <span class="score-num" style="font-size: 1.8em; color: #124e5e;">GASTRIC ULCER</span>
+                
+            </div>
+
+            <button class="next-case-btn" onclick="closeHint()">Got it</button>
+        </div>
+    </div>
+
+
+    <script src="kichban.js"></script>
+</body>
+</html>

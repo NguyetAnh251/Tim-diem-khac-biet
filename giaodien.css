@@ -1,0 +1,590 @@
+/* Thiết lập cơ bản */
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    /* Màu nền nhạt tương tự ảnh */
+    background-color: #efe8f7;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.container {
+    text-align: center;
+    padding: 40px;
+}
+
+/* Icons */
+.header-icons {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    display: flex;
+    gap: 10px;
+}
+
+.icon {
+    font-size: 24px;
+    color: #5a5a70; /* Màu tối hơn cho icon */
+}
+.cross-plus-left {
+    color: #72b2b1; /* Màu xanh lá nhạt cho icon chữ thập */
+}
+
+
+/* Tiêu đề */
+.title {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #313d49; /* Màu chữ đậm tương tự ảnh */
+    margin-bottom: 60px;
+}
+
+/* Các nút chọn cấp độ */
+.level-options {
+    display: flex;
+    gap: 80px; /* Khoảng cách giữa 2 nút */
+    justify-content: center;
+}
+
+.level-btn {
+    padding: 15px 50px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px; /* Bo tròn các góc */
+    cursor: pointer;
+    color: #fff;
+    transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
+    outline: none;
+}
+
+/* Màu sắc của nút Easy */
+#easy-btn {
+    /* Màu tím đậm tương tự ảnh */
+    background-color: #9c6fae; 
+}
+
+/* Màu sắc của nút Hard */
+#hard-btn {
+    /* Màu tím đậm hơn tương tự ảnh */
+    background-color: #9c6fae; 
+}
+
+/* HIỆU ỨNG HOVER (Di chuột qua) */
+.level-btn:hover {
+    /* Màu đậm hơn khi hover */
+    background-color: #8c5d9c; 
+    /* Đổ bóng nhẹ để làm nổi bật */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+}
+
+/* HIỆU ỨNG ACTIVE (Khi click) */
+.level-btn:active {
+    /* Ép nút xuống một chút */
+    transform: scale(0.98); 
+    background-color: #724982; 
+}
+
+/* Thông báo cấp độ đã chọn */
+.message {
+    margin-top: 50px;
+    font-size: 1.5em;
+    color: #313d49;
+    font-weight: bold;
+}
+
+
+
+/* PHẦN CSS MỚI CHO MÀN HÌNH GAME (CASE 1) */
+
+/* Header chứa tim và tiêu đề */
+/* --- SỬA HEADER: CÂN BẰNG 3 CỘT --- */
+.game-header {
+     position: relative;
+    display: flex;
+   
+    /* Căn giữa theo cả 2 chiều */
+    justify-content: space-between;
+    align-items: center;
+   
+    width: 90%;
+    max-width: 1200px;
+    height: 80px;
+    margin-bottom: 10px;
+    margin: 0 auto 10px auto; /* margin: 0 auto để căn giữa cả thanh header */
+
+
+    /* Căn ngang: Chừa chỗ bên phải để tâm chữ thẳng với khe ảnh */
+    padding-right: 25%;
+    box-sizing: border-box;
+}
+
+/* 1. Cột trái: Chứa Tim -> Chiếm 1 phần */
+.lives {
+    flex: 1; /* Chiếm 1 phần */
+    display: flex;
+    justify-content: flex-start; /* Căn trái */
+    padding-left: 20px; /* Thụt vào 1 chút cho đẹp */
+}
+
+.lives .heart {
+    font-size: 30px;
+    /* Màu tím chuẩn giống nút bấm trong ảnh thiết kế */
+    color: #a88bb5; 
+    margin-right: 5px;
+}
+.header-center {
+flex: 2; /* Chiếm 2 phần (rộng hơn 2 bên) để chữ dễ căn giữa */
+    display: flex;
+    justify-content: center; /* Căn giữa chữ tuyệt đối */
+    align-items: center;
+}
+
+/* 2. Cột giữa: Chứa Tiêu đề -> Chiếm phần lớn không gian */
+.game-title {
+    position: static;
+    
+    text-align: center;
+    color: #124e5e;
+    font-size: 3em;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    
+    /* 👇 MẤU CHỐT Ở ĐÂY 👇 */
+    line-height: 1; /* Thu gọn dòng để dễ căn chỉnh */
+    
+    /* Thêm margin-top để đẩy chữ xuống. 
+       Nếu vẫn thấy cao, bạn tăng số 10px lên thành 15px nhé */
+    margin-top: 12px; 
+    margin-bottom: 0; /* Đảm bảo không có gì đẩy từ dưới lên */
+
+    padding-left: 70px;
+}
+
+/* 3. Cột phải: Khoảng trắng -> Chiếm 1 phần (Bằng cột trái để cân bằng) */
+/* Bạn nhớ phải có thẻ <div class="header-spacer"></div> trong HTML nhé */
+.header-spacer {
+    flex: 1; 
+}
+
+
+/* Bố cục chính: Ảnh bên trái, Sidebar bên phải */
+.game-container {
+    display: flex;
+    width: 95%;
+    max-width: 1200px;
+    gap: 20px;
+    margin-top: 10px;
+   
+}
+
+/* Khu vực chứa 2 ảnh */
+.image-area {
+    flex: 3; /* Chiếm 3 phần chiều rộng */
+    display: flex;
+    gap: 15px;
+    height: 100%;
+}
+
+.image-box {
+    position: relative; 
+    overflow: hidden;
+    background-color: white;
+    border-radius: 15px;
+    padding: 10px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    height: 100%;
+    
+}
+
+.image-box img {
+    width: 100%; 
+    height: 100%; 
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+/* Sidebar bên phải */
+.sidebar {
+    flex: 1; /* Chiếm 1 phần chiều rộng */
+    max-width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 200px;
+}
+
+/* Hộp thời gian màu tím đậm */
+.timer-box {
+    /* ĐỔI MÀU: Tím đậm hơn giống thiết kế */
+    background-color: #886392; 
+    color: white;
+    
+    /* KÉO DÀI HÌNH HỘP: Tăng padding trên dưới lên 40px */
+    padding: 20px 10px; 
+    gap: 15px;
+    
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    
+    /* Đảm bảo hộp rộng bằng các nút bên dưới */
+    width: 100%; 
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+/* --- PHẦN SỐ (00:00) --- */
+.timer-number {
+    font-size: 48px;      /* Kích thước lớn */
+    font-weight: 800;     /* In đậm (Extra Bold) */
+    line-height: 1;     /* Gom dòng lại cho gọn */
+    letter-spacing: 2px;  /* Khoảng cách giữa các số cho dễ đọc */
+    margin-bottom: 0;   /* Khoảng cách nhỏ với chữ bên dưới */
+}
+
+/* --- PHẦN CHỮ (TIME / BEST TIME) --- */
+.timer-label {
+    font-size: 18px;      /* Kích thước = 1/2 số (60px / 2 = 30px) */
+    font-weight: 700;     /* In đậm (Bold) */
+    text-transform: uppercase; /* Viết hoa toàn bộ */
+    opacity: 0.9;         /* Hơi mờ nhẹ 1 chút xíu để tôn số lên */
+    margin-top: 5px;
+}
+.time-display {
+    font-size: 2.8em; /* Chỉnh vừa phải để không bị tràn khi hộp nhỏ */
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.time-display.small {
+    font-size: 1.5em;
+    margin-top: 10px;
+    opacity: 0.9;
+}
+
+.label {
+    display: block;
+    font-size: 14px;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+/* Các nút bấm chức năng (Hint, Audio...) */
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    /* --- THÊM DÒNG NÀY ĐỂ CĂN GIỮA CÁC NÚT --- */
+    align-items: center; /* Giúp các nút con tự động nhảy vào giữa */
+    width: 100%;         /* Đảm bảo khung chứa đủ rộng */
+}
+
+.control-btn {
+    background-color: #886392; /* Màu tím hơi khác một chút để phân biệt */
+    color: white;
+    border: none;
+
+    /* --- CHỈNH SỬA KÍCH THƯỚC NÚT --- */
+    width: 60%;          /* Thu gọn lại, chỉ chiếm 80% bề ngang so với box cha */
+    padding: 12px 20px;  /* Chỉnh padding cho cân đối */
+
+    padding: 12px;
+    border-radius: 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: 0.2s;
+    align-items: center;
+    font-weight: 700;
+}
+
+.control-btn:hover {
+    background-color: #7e6a96;
+}
+
+/* Footer thông báo */
+.footer-note {
+    margin-top: 20px;
+    color: #124e5e;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 90%;          /* 1. Phải rộng bằng Header (90%) */
+    max-width: 1200px;   /* 2. Giới hạn độ rộng tối đa giống Header */
+    justify-content: flex-start; /* 3. Đẩy nội dung sang trái */
+    padding-left: 40px;  /* 4. Thụt vào 40px (Bằng đúng vị trí Tim ở trên) */
+    box-sizing: border-box;
+}
+
+.alert-icon {
+    background-color: #886392;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* Vùng bấm (Ban đầu để màu đỏ để bạn dễ nhìn và căn chỉnh) */
+.diff-zone {
+    position: absolute; /* Để đặt vị trí theo top/left */
+    border-radius: 50%; /* Bo tròn */
+    cursor: default;  /* Con trỏ bình thường */
+    z-index: 100;       /* Nằm đè lên trên ảnh */
+    
+    /* --- QUAN TRỌNG: MÀU SẮC --- */
+    /* Bước 1: Để màu đỏ (0.5) để nhìn thấy mà chỉnh vị trí */
+    /* Bước 2: Sau khi chỉnh xong, sửa số 0.5 thành 0 (hoặc 'transparent') để tàng hình */
+    background-color: transparent;
+    
+    border: none;
+    transition: all 0.3s ease;
+}
+
+/* Khi đã tìm thấy -> Hiện vòng tròn đen */
+.diff-zone.found {
+    background-color: transparent !important; /* Tắt màu nền đỏ */
+    border: 3px solid #2c3e50; /* HIỆN VIỀN MÀU ĐEN/XANH ĐẬM */ 
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8); /* Bóng sáng nhẹ */
+    
+    cursor: default;      /* Trả lại chuột bình thường */
+    pointer-events: none; /* Chặn không cho bấm lại */
+}
+
+/* Vòng tròn copy sang bên ảnh trái (Mặc định ẩn) */
+.diff-marker-left {
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid #2c3e50; /* Viền giống bên phải */
+    z-index: 10;
+    display: none; /* Ẩn đi, JS sẽ bật lên */
+    pointer-events: none;
+}
+
+/* Tim bị mất (sẽ mờ đi) */
+.heart.lost {
+    opacity: 0.2; /* Mờ đi */
+    filter: grayscale(100%); /* Chuyển sang đen trắng */
+    transition: all 0.3s;
+}
+ /* CSS CHO POPUP WELL DONE (CHIẾN THẮNG) */
+/* ==================================================== */
+
+/* 1. Lớp phủ mờ toàn màn hình */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(255, 255, 255, 0.4); /* Nền trắng mờ nhẹ */
+    backdrop-filter: blur(2px); /* Làm mờ game phía sau 1 chút */
+    display: none; /* Mặc định ẩn */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Luôn nằm trên cùng */
+}
+
+/* 2. Hộp thông báo màu tím pastel */
+.modal-box {
+    background-color: #dcbce0; /* Màu tím nhạt giống thiết kế */
+    width: 500px;
+    max-width: 90%;
+    padding: 40px 20px;
+    border-radius: 30px; /* Bo tròn góc mạnh */
+    text-align: center;
+    position: relative; /* Để căn chỉnh trái tim góc phải */
+    box-shadow: 0 10px 30px rgba(136, 99, 146, 0.3);
+    animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+/* Hiệu ứng nảy ra khi hiện popup */
+@keyframes popIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* 3. Chữ WELL DONE! */
+.modal-title {
+    font-family: "Times New Roman", serif; /* Font có chân sang trọng */
+    font-size: 3.5em;
+    color: white;
+    margin: 0;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* 4. Chữ CASE 1 */
+.modal-subtitle {
+    color: #124e5e; /* Màu xanh đậm */
+    font-size: 1.5em;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin: 10px 0 5px 0;
+}
+
+/* 5. Dòng YOUR SCORE */
+.modal-score-box {
+    color: #124e5e;
+    font-size: 1.2em;
+    font-weight: 700;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.score-num {
+    font-size: 1.3em;
+}
+
+/* 6. Nút Next case */
+.next-case-btn {
+    background-color: #a67fb5; /* Màu tím đậm hơn chút */
+    color: white;
+    border: none;
+    padding: 15px 50px;
+    font-size: 1.2em;
+    border-radius: 50px; /* Bo tròn hình viên thuốc */
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.2s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.next-case-btn:hover {
+    background-color: #8e659e;
+    transform: scale(1.05);
+}
+
+/* 7. Trái tim trang trí (Góc phải) */
+.scribble-heart {
+    position: absolute;
+    top: -30px;
+    right: -20px;
+    font-size: 80px; /* Kích thước to */
+    color: #8e94f2;  /* Màu tím xanh loang lổ */
+    opacity: 0.8;
+    transform: rotate(15deg);
+    /* Lưu ý: Nếu bạn có ảnh trái tim vẽ tay (png) thì thay bằng thẻ img nhé */
+}
+
+.small-heart {
+    font-size: 20px;
+    color: #a88bb5;
+}
+
+/* Nút Try Again (Dùng chung class next-case-btn nhưng bạn có thể chỉnh thêm nếu muốn) */
+.next-case-btn {
+    background-color: #a67fb5; /* Màu tím đậm */
+    color: white;
+    border: none;
+    padding: 12px 60px; /* Độ rộng nút */
+    font-size: 1.2em;
+    border-radius: 50px; /* Bo tròn viên thuốc */
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.next-case-btn:hover {
+    background-color: #8e659e;
+    transform: scale(1.05);
+}
+
+/* --- CSS RIÊNG CHO BẢNG HINT --- */
+.modal-box.hint-box {
+    background-color: #dcbce0; 
+    border: none;
+}
+
+/* Chỉnh lại icon bóng đèn cho đúng vị trí */
+.hint-box .scribble-heart {
+    font-size: 70px;
+    top: -35px;
+    right: -25px;
+    transform: rotate(10deg);
+    opacity: 1;
+}
+
+/* --- CSS CHO GIAO DIỆN CHÍNH (MAIN SCREEN) --- */
+.main-screen {
+    /* Đảm bảo khung chứa chiếm toàn bộ màn hình */
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #efe8f7; /* Giữ màu nền chuẩn */
+    overflow: hidden; /* Ngăn thanh cuộn xuất hiện */
+    padding: 0;
+    margin: 0;
+}
+
+.background-image {
+    /* Ép ảnh co giãn theo màn hình */
+    width: 100%;
+    height: 100%;
+    
+    /* 👇 DÒNG NÀY QUAN TRỌNG: Giữ tỉ lệ và đảm bảo toàn bộ ảnh hiển thị 👇 */
+    object-fit: contain; 
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Đặt dưới nút bấm */
+}
+
+/* Căn chỉnh vị trí các nút bấm (để chúng nằm trên ảnh) */
+.button-container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    /* Căn chỉnh theo chiều dọc để khớp với thiết kế */
+    margin-top: 170px; 
+    margin-left: -25px;
+}
+
+/* Style cho các nút Play/Setting (Tham khảo, bạn có thể chỉnh lại) */
+.action-button {
+    padding: 15px 70px;
+    font-size: 1.5em;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px; 
+    cursor: pointer;
+    color: #fff;
+    background-color: #a67fb5; 
+    transition: 0.3s;
+}
+
+.action-button:hover {
+    background-color: #8e659e;
+}
